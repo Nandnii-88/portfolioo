@@ -2,155 +2,171 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Nandni Nirmal | AI Engineer & Designer</title>
+  <title>Nandni Nirmal | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
-      /* Vibrant Color Palette */
-      --bg: #050816;
-      --accent-primary: #6366f1; /* Indigo */
-      --accent-secondary: #a855f7; /* Purple */
-      --accent-tertiary: #22c55e; /* Green */
-      --text: #f3f4f6;
-      --muted: #9ca3af;
-      --glass: rgba(15, 23, 42, 0.8);
-      --border: rgba(255, 255, 255, 0.1);
-      --radius: 1.25rem;
+      --bg: #030014;
+      --card-bg: rgba(17, 25, 40, 0.75);
+      --accent: #7000ff;
+      --accent-glow: rgba(112, 0, 255, 0.3);
+      --text-main: #ffffff;
+      --text-dim: #b5b5b5;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
 
     body {
-      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      /* Colorful background gradient */
-      background: radial-gradient(circle at top left, #1e1b4b, #020617 50%),
-                  radial-gradient(circle at bottom right, #4c1d95, #020617 50%);
-      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+        radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%);
+      color: var(--text-main);
       line-height: 1.6;
-      min-height: 100vh;
     }
 
-    .page { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
 
-    /* Header & Nav */
+    /* Header Styling */
     header {
-      position: sticky; top: 0; z-index: 100;
-      backdrop-filter: blur(15px);
-      border-bottom: 1px solid var(--border);
-      background: rgba(2, 6, 23, 0.8);
+      padding: 1.5rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
-    .nav-inner { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
-    nav ul { list-style: none; display: flex; gap: 1.5rem; }
-    nav a { text-decoration: none; color: var(--muted); font-size: 0.9rem; transition: 0.3s; }
-    nav a:hover { color: var(--accent-primary); }
+
+    .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; }
+    .logo span { color: var(--accent); }
 
     /* Hero Section */
-    .hero { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: center; padding: 4rem 0; }
-    h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem; }
-    h1 span {
-      background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);
+    .hero { padding: 8rem 0 4rem; text-align: center; }
+    .hero h1 { font-size: 4rem; font-weight: 900; line-height: 1; margin-bottom: 1rem; }
+    .hero h1 span {
+      background: linear-gradient(to right, #7000ff, #00d4ff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .btn-primary {
-      background: linear-gradient(135deg, #6366f1, #a855f7);
-      padding: 0.8rem 2rem; border-radius: 50px; border: none;
-      color: white; font-weight: bold; cursor: pointer; transition: 0.3s;
-    }
-    .btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(99, 102, 241, 0.6); }
+    .hero p { color: var(--text-dim); font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem; }
 
-    /* Cards & Form */
-    .glass-card {
-      background: var(--glass);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
+    /* Grid Layouts */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1.5rem;
       padding: 2rem;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
     }
+    .card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 10px 30px var(--accent-glow); }
 
-    .contact-form { display: grid; gap: 1rem; }
-    .input-group { display: flex; flex-direction: column; gap: 0.5rem; }
+    /* Skills Badges */
+    .badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .badge { background: rgba(112, 0, 255, 0.1); color: #c399ff; padding: 0.4rem 0.8rem; border-radius: 0.5rem; font-size: 0.8rem; border: 1px solid rgba(112, 0, 255, 0.3); }
+
+    /* Contact Form */
+    .contact-container { max-width: 600px; margin: 5rem auto; background: var(--card-bg); padding: 3rem; border-radius: 2rem; border: 1px solid rgba(255,255,255,0.1); }
     input, textarea {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      border-radius: 0.5rem; padding: 0.8rem;
-      color: white; font-family: inherit;
+      width: 100%; padding: 1rem; margin-bottom: 1rem;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 0.8rem; color: white; outline: none;
     }
-    input:focus, textarea:focus { border-color: var(--accent-primary); outline: none; }
+    input:focus, textarea:focus { border-color: var(--accent); }
+    .btn {
+      background: var(--accent); color: white; padding: 1rem 2rem;
+      border: none; border-radius: 0.8rem; font-weight: 700; cursor: pointer; width: 100%;
+    }
 
-    @media (max-width: 850px) {
-      .hero { grid-template-columns: 1fr; text-align: center; }
-      h1 { font-size: 2.5rem; }
-    }
+    @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } }
   </style>
 </head>
 <body>
 
+<div class="container">
   <header>
-    <div class="nav-inner">
-      <div style="font-weight: bold; font-size: 1.2rem;">NN</div>
-      <nav>
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Hire Me</a></li>
-        </ul>
-      </nav>
-    </div>
+    <div class="logo">NANDNI<span>.</span></div>
+    <nav style="display: flex; gap: 2rem;">
+      <a href="#projects" style="color: white; text-decoration: none;">Projects</a>
+      <a href="#contact" style="color: white; text-decoration: none;">Hire Me</a>
+    </nav>
   </header>
 
-  <main class="page">
-    <section class="hero">
-      <div>
-        <h1>Building <span>AI Solutions</span> & Beautiful Designs.</h1>
-        <p style="color: var(--muted); margin-bottom: 2rem;">
-          CS Student at VIT Bhopal. Specialist in Brain Tumour Detection, Deep Learning, and UI/UX[cite: 10, 29, 40].
-        </p>
-        <a href="#contact" class="btn-primary">Hire Me Now</a>
+  <section class="hero">
+    <h1>Hi, I'm <span>Nandni Nirmal</span></h1>
+    <p>Computer Science Engineering Student at <strong>VIT Bhopal University</strong>. Specialized in Deep Learning, UI/UX, and Full-Stack Development[cite: 27, 29, 40].</p>
+    <div style="display: flex; gap: 1rem; justify-content: center;">
+      <span class="badge">B.Tech 2024-2028</span>
+      <span class="badge">Open for Freelance</span>
+    </div>
+  </section>
+
+  <h2 id="projects">Selected Projects</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Brain Tumour Detection</h3>
+      <p>Developed a Deep Learning system using CNN, DNN, and VGG-16 architectures for medical imaging analysis.</p>
+      <div class="badges">
+        <span class="badge">Python</span> <span class="badge">Deep Learning</span> <span class="badge">CNN</span>
       </div>
-      <div class="glass-card" style="text-align: center;">
-        <div style="font-size: 4rem;">🤖</div>
-        <h2 style="margin: 1rem 0;">Nandni Nirmal</h2>
-        <p>Sophomore @ VIT Bhopal [cite: 11]</p>
-        <p style="font-size: 0.8rem; color: var(--accent-primary);">AI / ML / UI-UX / Python / SQL [cite: 15, 18, 40]</p>
+    </div>
+    <div class="card">
+      <h3>Library Management System</h3>
+      <p>Built a C++ console-based system using file handling for inventory and user records[cite: 25, 26].</p>
+      <div class="badges">
+        <span class="badge">C++</span> <span class="badge">File Handling</span>
       </div>
-    </section>
-
-    <section id="contact" style="padding: 4rem 0;">
-      <h2 style="margin-bottom: 2rem; text-align: center;">Let's Work Together</h2>
-      <div class="glass-card" style="max-width: 600px; margin: 0 auto;">
-        
-        <form action="https://formspree.io/f/nandninirmal4@gmail.com" method="POST" class="contact-form">
-          <div class="input-group">
-            <label>Full Name</label>
-            <input type="text" name="name" placeholder="Enter your name" required>
-          </div>
-          <div class="input-group">
-            <label>Email Address</label>
-            <input type="email" name="_replyto" placeholder="your@email.com" required>
-          </div>
-          <div class="input-group">
-            <label>Project Details</label>
-            <textarea name="message" rows="5" placeholder="What can I help you with?" required></textarea>
-          </div>
-          <input type="text" name="_gotcha" style="display:none">
-          
-          <button type="submit" class="btn-primary">Send Message</button>
-        </form>
-
-        <div style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.5rem; font-size: 0.9rem;">
-          <p>📧 <strong>Email:</strong> nandninirmal4@gmail.com [cite: 3]</p>
-          <p>🔗 <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/nandni-nirmal-531a36324/" style="color: var(--accent-primary);">View Profile [cite: 4]</a></p>
-        </div>
+    </div>
+    <div class="card">
+      <h3>Online Café Finder</h3>
+      <p>Responsive website allowing users to explore popular cafés and view menus online[cite: 30, 31].</p>
+      <div class="badges">
+        <span class="badge">HTML</span> <span class="badge">CSS</span> <span class="badge">JavaScript</span>
       </div>
-    </section>
-  </main>
+    </div>
+  </div>
 
-  <footer style="text-align: center; padding: 2rem; font-size: 0.8rem; color: var(--muted);">
-    © <span id="year"></span> Nandni Nirmal. Built with Passion & Code.
-  </footer>
+  <h2 style="margin-top: 4rem;">Technical Skills [cite: 14, 15, 16]</h2>
+  <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+    <div class="card" style="padding: 1.5rem;">
+      <h4>Languages</h4>
+      <p>C, C++, Python, Java, SQL </p>
+    </div>
+    <div class="card" style="padding: 1.5rem;">
+      <h4>Design</h4>
+      <p>UI/UX, Canva, Digital Art </p>
+    </div>
+    <div class="card" style="padding: 1.5rem;">
+      <h4>Tools</h4>
+      <p>Git, GitHub, VS Code, MySQL [cite: 16]</p>
+    </div>
+  </div>
 
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <div class="contact-container" id="contact">
+    <h2 style="text-align: center; margin-bottom: 2rem;">Hire Me / Contact</h2>
+    <form action="https://formspree.io/f/nandninirmal4@gmail.com" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email (e.g., nandninirmal4@gmail.com)" required>
+      <textarea name="message" placeholder="Tell me about your project or job offer..." required></textarea>
+      <input type="text" name="_gotcha" style="display:none">
+      <button type="submit" class="btn">Send Request</button>
+    </form>
+    
+    <div style="margin-top: 2rem; text-align: center; font-size: 0.9rem; color: var(--text-dim);">
+      <p>Primary: nandninirmal4@gmail.com </p>
+      <p>University: nandni.24bce11201@vitbhopal.ac.in </p>
+    </div>
+  </div>
+</div>
+
+<footer style="text-align: center; padding: 4rem 0; color: var(--text-dim); border-top: 1px solid rgba(255,255,255,0.1);">
+  © 2026 Nandni Nirmal • VIT Bhopal University • B.Tech CSE 
+</footer>
+
 </body>
 </html>
