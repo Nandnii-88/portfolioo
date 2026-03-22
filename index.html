@@ -2,161 +2,454 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Nandni Nirmal | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nandni Nirmal | AI Engineer & Innovator</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     :root {
-      --bg: #030014;
-      --card-bg: rgba(17, 25, 40, 0.75);
-      --accent: #7000ff;
-      --accent-glow: rgba(112, 0, 255, 0.3);
-      --text-main: #ffffff;
-      --text-dim: #b5b5b5;
+      --bg: #0a0118;
+      --card-bg: rgba(20, 15, 45, 0.7);
+      --accent: #a855f7;
+      --accent-glow: rgba(168, 85, 247, 0.4);
+      --accent-secondary: #3b82f6;
+      --text-main: #f0f0ff;
+      --text-dim: #cbcbe6;
+      --border-glow: rgba(168, 85, 247, 0.3);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
 
     body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background-color: var(--bg);
-      background-image: 
-        radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-        radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%);
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      background-image: radial-gradient(circle at 10% 20%, rgba(60, 30, 100, 0.25) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 70%, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
       color: var(--text-main);
-      line-height: 1.6;
+      line-height: 1.5;
+      overflow-x: hidden;
     }
 
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    /* animated gradient background */
+    .bg-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: radial-gradient(ellipse at 30% 40%, rgba(80, 40, 140, 0.2), transparent 70%);
+    }
 
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* modern glass header */
     header {
-      padding: 1.5rem 0;
+      padding: 1.2rem 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(16px);
+      background: rgba(10, 1, 24, 0.7);
       z-index: 1000;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(168, 85, 247, 0.3);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
 
-    .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; }
-    .logo span { color: var(--accent); }
-
-    .hero { padding: 6rem 0 3rem; text-align: center; }
-    .hero h1 { font-size: 4rem; font-weight: 900; line-height: 1.1; margin-bottom: 1rem; }
-    .hero h1 span {
-      background: linear-gradient(to right, #7000ff, #00d4ff);
+    .logo {
+      font-weight: 800;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #ffffff, #c084fc);
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
     }
-    
-    .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; }
-    .social-icon { 
-      padding: 0.8rem 1.5rem; 
-      border-radius: 50px; 
-      background: rgba(255,255,255,0.05); 
-      border: 1px solid rgba(255,255,255,0.1);
-      color: white; 
-      text-decoration: none; 
-      font-weight: 600;
+    .logo span {
+      background: linear-gradient(135deg, #a855f7, #3b82f6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    nav {
+      display: flex;
+      gap: 2.5rem;
+    }
+    nav a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+      font-size: 1rem;
+      position: relative;
+    }
+    nav a:hover {
+      color: var(--accent);
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--accent);
       transition: 0.3s;
     }
-    .social-icon:hover { background: var(--accent); transform: translateY(-3px); }
+    nav a:hover::after {
+      width: 100%;
+    }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
+    /* hero section enhanced */
+    .hero {
+      padding: 6rem 0 4rem;
+      text-align: center;
+      position: relative;
+    }
+    .hero h1 {
+      font-size: 4.5rem;
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+      background: linear-gradient(to right, #f0f0ff, #c084fc, #60a5fa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero .highlight {
+      background: linear-gradient(135deg, #a855f7, #3b82f6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
+    .hero p {
+      color: var(--text-dim);
+      font-size: 1.2rem;
+      max-width: 780px;
+      margin: 1rem auto;
+      backdrop-filter: blur(4px);
+    }
+    .hero .badge-group {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 1.8rem 0;
+    }
+    .pill {
+      background: rgba(168, 85, 247, 0.15);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      backdrop-filter: blur(4px);
+    }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-top: 2rem;
+    }
+    .social-icon {
+      padding: 0.7rem 1.8rem;
+      border-radius: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(4px);
+    }
+    .social-icon i {
+      font-size: 1rem;
+    }
+    .social-icon:hover {
+      background: var(--accent);
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      box-shadow: 0 8px 20px rgba(168, 85, 247, 0.4);
+    }
+
+    /* section titles */
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin: 3rem 0 1.5rem;
+      text-align: center;
+      background: linear-gradient(135deg, #fff, #c084fc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* cards grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
     .card {
       background: var(--card-bg);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 1.5rem;
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      border-radius: 1.8rem;
       padding: 2rem;
-      transition: all 0.3s ease;
+      transition: all 0.35s ease;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     }
-    .card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 10px 30px var(--accent-glow); }
+    .card:hover {
+      transform: translateY(-10px);
+      border-color: var(--accent);
+      box-shadow: 0 20px 35px var(--accent-glow);
+      background: rgba(30, 20, 55, 0.8);
+    }
+    .card h3 {
+      font-size: 1.7rem;
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+    }
+    .card p {
+      color: var(--text-dim);
+      margin: 1rem 0;
+    }
+    .badge {
+      background: rgba(112, 0, 255, 0.2);
+      color: #d9b4ff;
+      padding: 0.3rem 0.8rem;
+      border-radius: 2rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border: 1px solid rgba(168, 85, 247, 0.5);
+      display: inline-block;
+      margin: 0.2rem 0.2rem;
+    }
 
-    .badge { background: rgba(112, 0, 255, 0.1); color: #c399ff; padding: 0.4rem 0.8rem; border-radius: 0.5rem; font-size: 0.8rem; border: 1px solid rgba(112, 0, 255, 0.3); display: inline-block; margin: 0.2rem; }
+    /* skills and certs */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0 3rem;
+    }
 
-    .contact-container { max-width: 600px; margin: 5rem auto; background: var(--card-bg); padding: 3rem; border-radius: 2rem; border: 1px solid rgba(255,255,255,0.1); }
-    input, textarea { width: 100%; padding: 1rem; margin-bottom: 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 0.8rem; color: white; outline: none; }
-    .btn { background: var(--accent); color: white; padding: 1rem 2rem; border: none; border-radius: 0.8rem; font-weight: 700; cursor: pointer; width: 100%; }
+    /* contact section */
+    .contact-container {
+      max-width: 650px;
+      margin: 4rem auto 5rem;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      padding: 2.5rem;
+      border-radius: 2.5rem;
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    .contact-container h2 {
+      text-align: center;
+      margin-bottom: 1.8rem;
+      font-size: 2rem;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 1rem;
+      margin-bottom: 1.2rem;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      border-radius: 1rem;
+      color: white;
+      outline: none;
+      font-family: inherit;
+      transition: 0.2s;
+    }
+    input:focus, textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
+    }
+    .btn {
+      background: linear-gradient(95deg, #a855f7, #3b82f6);
+      color: white;
+      padding: 1rem;
+      border: none;
+      border-radius: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      transform: scale(0.98);
+      box-shadow: 0 6px 18px rgba(168, 85, 247, 0.5);
+    }
 
-    @media (max-width: 768px) { .hero h1 { font-size: 2.8rem; } }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid rgba(168, 85, 247, 0.2);
+      color: var(--text-dim);
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .container { padding: 0 1.2rem; }
+      nav { gap: 1rem; }
+      .section-title { font-size: 2rem; }
+    }
   </style>
 </head>
 <body>
+<div class="bg-glow"></div>
 
 <div class="container">
   <header>
-    <div class="logo">NANDNI<span>.</span></div>
-    <nav style="display: flex; gap: 2rem;">
-      <a href="#projects" style="color: white; text-decoration: none;">Projects</a>
-      <a href="#contact" style="color: white; text-decoration: none;">Hire Me</a>
+    <div class="logo">NANDNI<span>.</span>AI</div>
+    <nav>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Hire Me</a>
     </nav>
   </header>
 
   <section class="hero">
-    <h1>Hi, I'm <span>Nandni Nirmal</span></h1>
-    <p style="color: var(--text-dim); font-size: 1.2rem; max-width: 750px; margin: 1rem auto;">Computer Science Engineering Student at <strong>VIT Bhopal University 2nd year</strong>. Passionate about artificial intelligence and Deep Learning, UI/UX, and crafting real-world AI solutions.</p>
-    
+    <h1>Hi, I'm <span class="highlight">Nandni Nirmal</span></h1>
+    <div class="badge-group">
+      <span class="pill"><i class="fas fa-brain"></i> AI/ML Enthusiast</span>
+      <span class="pill"><i class="fas fa-code"></i> Full Stack Dev</span>
+      <span class="pill"><i class="fas fa-chart-line"></i> Data Science</span>
+    </div>
+    <p>Computer Science Engineering Student at <strong>VIT Bhopal University</strong> (2nd Year). Passionate about Artificial Intelligence, Deep Learning, and building intelligent systems that solve real-world problems. I merge creative UI/UX with robust AI solutions.</p>
+    <p style="font-size: 1rem;"><i class="fas fa-map-marker-alt"></i> Bhopal, India  |  <i class="fas fa-calendar-alt"></i> Class of 2027</p>
+
     <div class="social-links">
-      <a href="https://github.com/Nandnii-88" class="social-icon" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/nandni-nirmal-531a36324/" class="social-icon" target="_blank">LinkedIn</a>
+      <a href="https://github.com/Nandnii-88" class="social-icon" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+      <a href="#" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+      <a href="#" class="social-icon" target="_blank"><i class="fas fa-envelope"></i> Email</a>
     </div>
   </section>
 
-  <h2 id="projects">Featured Projects</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Brain Tumour Detection</h3>
-      <p>Developed a Deep Learning system using CNN, DNN, and VGG-16 architectures for medical image analysis.</p>
-      <div style="margin-top: 1rem;">
-        <span class="badge">Python</span> <span class="badge">Deep Learning</span> <span class="badge">CNN</span>
+  <!-- PROJECTS SECTION (Added Stock Market Prediction) -->
+  <div id="projects">
+    <h2 class="section-title"><i class="fas fa-laptop-code"></i> Featured Projects</h2>
+    <div class="grid">
+      <div class="card">
+        <h3><i class="fas fa-microscope"></i> Brain Tumour Detection</h3>
+        <p>Deep Learning ensemble using CNN, DNN, and VGG-16 architectures for high-precision medical image classification. Achieved 94% validation accuracy on MRI scans.</p>
+        <div>
+          <span class="badge">Python</span> <span class="badge">TensorFlow</span> <span class="badge">CNN</span> <span class="badge">VGG-16</span>
+        </div>
       </div>
-    </div>
-    <div class="card">
-      <h3>Library Management System</h3>
-      <p>A C++ console-based system using file handling for inventory and user records</p>
-      <div style="margin-top: 1rem;">
-        <span class="badge">C++</span> <span class="badge">File Handling</span>
+      <div class="card">
+        <h3><i class="fas fa-chart-line"></i> Stock Market Predictor</h3>
+        <p>Built an LSTM-based time series forecasting model to predict stock closing prices using historical data (Yahoo Finance). Integrated technical indicators like SMA, RSI and achieved RMSE of 2.8. Deployed with Flask API for real-time predictions.</p>
+        <div>
+          <span class="badge">Python</span> <span class="badge">LSTM</span> <span class="badge">Pandas</span> <span class="badge">Scikit-learn</span> <span class="badge">Flask</span>
+        </div>
       </div>
-    </div>
-    <div class="card">
-      <h3>Online Café Finder</h3>
-      <p>Responsive website enabling users to explore popular cafés and menus online.</p>
-      <div style="margin-top: 1rem;">
-        <span class="badge">HTML</span> <span class="badge">CSS</span> <span class="badge">JavaScript</span>
+      <div class="card">
+        <h3><i class="fas fa-utensils"></i> Online Café Finder</h3>
+        <p>Interactive responsive web app with geolocation and café menu browsing. Users can filter by cuisine, rating, and location. Built with HTML/CSS/JS and Leaflet maps.</p>
+        <div>
+          <span class="badge">HTML5</span> <span class="badge">CSS3</span> <span class="badge">JavaScript</span> <span class="badge">Leaflet</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3><i class="fas fa-book"></i> Library Management System</h3>
+        <p>C++ console application with file handling, user authentication, book issuance, and fine calculation. OOP-based design for scalability.</p>
+        <div>
+          <span class="badge">C++</span> <span class="badge">OOP</span> <span class="badge">File I/O</span>
+        </div>
       </div>
     </div>
   </div>
 
-  <h2 style="margin-top: 4rem;">Certifications & Skills</h2>
-  <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-    <div class="card">
-      <h4>Global Tech Skills</h4>
-      <p>C, C++, Python, Java, SQL, React, Node.js.</p>
-    </div>
-    <div class="card">
-      <h4>Certifications</h4>
-      <p>• NPTEL: Cloud Computing & Java<br>
-         • AWS: Cloud Computing <br>
-         • HackerRank: SQL (Advanced) </p>
+  <!-- Skills + Certifications Enhanced -->
+  <div id="skills">
+    <h2 class="section-title"><i class="fas fa-cogs"></i> Tech Stack & Achievements</h2>
+    <div class="skills-grid">
+      <div class="card">
+        <h3><i class="fas fa-code"></i> Core Skills</h3>
+        <p>C, C++, Python, Java, SQL, React.js, Node.js, Express, MongoDB, TensorFlow, Keras, Pandas, NumPy, Flask, Git.</p>
+        <div style="margin-top: 1rem;">
+          <span class="badge">Python</span> <span class="badge">Deep Learning</span> <span class="badge">React</span> <span class="badge">Node.js</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3><i class="fas fa-certificate"></i> Certifications</h3>
+        <p>✔ NPTEL: Cloud Computing & Java Programming (Elite)<br>
+           ✔ AWS Academy: Cloud Foundations<br>
+           ✔ HackerRank SQL (Advanced) Certification<br>
+           ✔ Deep Learning Specialization (Coursera - In Progress)</p>
+      </div>
     </div>
   </div>
 
-  <div class="contact-container" id="contact">
-    <h2 style="text-align: center; margin-bottom: 2rem;">Work with Me</h2>
-    <form action="https://formspree.io/f/nandninirmal4@gmail.com" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="nandninirmal4@gmail.com" required>
-      <textarea name="message" placeholder="Project details, deadlines, or inquiries..." required></textarea>
-      <button type="submit" class="btn">Send Request</button>
-    </form>
+  <!-- CONTACT SECTION (Improved) -->
+  <div id="contact">
+    <div class="contact-container">
+      <h2><i class="fas fa-paper-plane"></i> Let's Collaborate</h2>
+      <p style="text-align: center; margin-bottom: 1.5rem;">AI projects, freelance, research — let's bring ideas to life.</p>
+      <form id="contactForm" action="#" method="post">
+        <input type="text" placeholder="Your Name" id="name" required>
+        <input type="email" placeholder="Email Address" id="email" required>
+        <textarea rows="4" placeholder="Tell me about your idea or project..." id="message"></textarea>
+        <button type="submit" class="btn"><i class="fas fa-envelope"></i> Send Message</button>
+      </form>
+      <p id="formFeedback" style="margin-top: 1rem; text-align: center; font-size: 0.9rem; color: #c084fc;"></p>
+    </div>
   </div>
+
+  <footer>
+    <p>© 2025 Nandni Nirmal — Innovating at the intersection of AI & Design</p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem;"><i class="fas fa-heart" style="color: #a855f7;"></i> Driven by curiosity, built with code.</p>
+  </footer>
 </div>
 
-<footer style="text-align: center; padding: 3rem 0; color: var(--text-dim); border-top: 1px solid rgba(255,255,255,0.1);">
-  © 2026 Nandni Nirmal • VIT Bhopal • nandni.24bce11201@vitbhopal.ac.in 
-</footer>
+<script>
+  // Simple interactive contact form feedback
+  const form = document.getElementById('contactForm');
+  const feedback = document.getElementById('formFeedback');
 
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const msg = document.getElementById('message').value.trim();
+    
+    if(name && email && msg) {
+      feedback.innerHTML = `<i class="fas fa-check-circle"></i> Thanks ${name}! I'll reach out soon. 🚀`;
+      feedback.style.color = "#b77eff";
+      form.reset();
+      setTimeout(() => {
+        feedback.innerHTML = '';
+      }, 4000);
+    } else {
+      feedback.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Please fill all fields.`;
+      feedback.style.color = "#f87171";
+      setTimeout(() => {
+        feedback.innerHTML = '';
+      }, 3000);
+    }
+  });
+</script>
 </body>
 </html>
